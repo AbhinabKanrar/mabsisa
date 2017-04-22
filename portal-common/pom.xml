@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.mabsisa.portal</groupId>
+		<artifactId>mabsisa-portal</artifactId>
+		<version>1.0-SNAPSHOT</version>
+	</parent>
+	<groupId>com.mabsisa.portal.common</groupId>
+	<artifactId>portal-common</artifactId>
+	<version>1.0-SNAPSHOT</version>
+	<name>portal-common</name>
+	<url>http://maven.apache.org</url>
+	<dependencies>
+<!-- https://mvnrepository.com/artifact/org.bouncycastle/bcpkix-jdk15on -->
+<dependency>
+    <groupId>org.bouncycastle</groupId>
+    <artifactId>bcpkix-jdk15on</artifactId>
+    <version>1.56</version>
+</dependency>
+
+	</dependencies>
+</project>
