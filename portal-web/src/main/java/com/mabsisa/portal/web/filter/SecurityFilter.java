@@ -33,12 +33,25 @@ public final class SecurityFilter implements Filter {
 	@Value("${url.logout}")
 	private String URL_LOGOUT;
 
+	@Value("${url.whitelist}")
+	private String URL_WHITELIST;
+	
 	private SecurityFilter() {
 		super();
 	}
 
 	@Override
-	public void init(FilterConfig arg) throws ServletException {}
+	public void init(FilterConfig arg) throws ServletException {
+		if (COOKIE_ACCESS_TOKEN == null) {
+			COOKIE_ACCESS_TOKEN = System.getProperty("cookie.accessToken");
+		}
+		if (URL_LOGIN == null) {
+			URL_LOGIN = "/login";
+		}
+		if (URL_LOGOUT == null) {
+			URL_LOGOUT = "/logout";
+		}
+	}
 
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
@@ -48,7 +61,9 @@ public final class SecurityFilter implements Filter {
 		HttpServletResponse httpServletResponse = (HttpServletResponse) response;
 		Cookie cookie = WebUtils.getCookie(httpServletRequest, COOKIE_ACCESS_TOKEN);
 
-		if (httpServletRequest.getRequestURI().equalsIgnoreCase(URL_LOGIN)) {
+		if (httpServletRequest.getRequestURI().contains(URL_WHITELIST)) {
+			chain.doFilter(httpServletRequest, httpServletResponse);
+		} else if (httpServletRequest.getRequestURI().equalsIgnoreCase(URL_LOGIN)) {
 			if (cookie == null) {
 				chain.doFilter(httpServletRequest, httpServletResponse);
 			} else if (SecurityUtil.getClaims(cookie.getValue()) == null) {
