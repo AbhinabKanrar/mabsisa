@@ -19,15 +19,15 @@ public class Application implements CommandLineRunner {
 	private static final int TOMCAT_THREAD_COUNT = 100;
 	private static final int ACCEPT_COUNT = 1000;
 	private static final int BUFFER_SIZE = 2048;
-	private static final int CONNECTION_LINGER = -1;
-	private static final int CONNECTION_TIMEOUT = 5000;
-	private static final int KEEP_ALIVE_TIMEOUT = 1;
-	private static final int MAX_KEEP_ALIVE_REQUESTS = 1;
-	private static final int ACCEPTOR_THREAD_COUNT = 1;
-	private static final int MAX_CONNECTIONS = 100000;
-	private static final String ENABLE_LOOKUPS = "false";
-	private static final String COMPRESSION = "off";
-	private static final boolean SOCKET_SO_KEEP_ALIVE = false;
+	public static final int CONNECTION_LINGER = -1;
+	public static final int CONNECTION_TIMEOUT = 5000;
+	public static final int KEEP_ALIVE_TIMEOUT = 1;
+	public static final int MAX_KEEP_ALIVE_REQUESTS = 1;
+	public static final int ACCEPTOR_THREAD_COUNT = 1;
+	public static final int MAX_CONNECTIONS = 100000;
+	public static final String ENABLE_LOOKUPS = "false";
+	public static final String COMPRESSION = "off";
+	public static final boolean SOCKET_SO_KEEP_ALIVE = false;
 
 	@Override
 	public void run(String... args) throws Exception {
