@@ -43,7 +43,8 @@ public final class CorsFilter implements Filter {
 		Cookie cookie = WebUtils.getCookie(httpServletRequest, COOKIE_CSRF_TOKEN);
 		
 		if (cookie == null || cookie.getValue() == null) {
-			setCookie();
+			cookie = generateCookie();
+			httpServletResponse.addCookie(cookie);
 		}
 		
 		chain.doFilter(httpServletRequest, httpServletResponse);
@@ -53,10 +54,11 @@ public final class CorsFilter implements Filter {
 	@Override
 	public void init(FilterConfig arg) throws ServletException {}
 	
-	private void setCookie() {
+	private Cookie generateCookie() {
 		Cookie cookie = new Cookie(COOKIE_CSRF_TOKEN, UUID.randomUUID().toString());
 		cookie.setPath("/");
 		cookie.setMaxAge(-1);
+		return cookie;
 	}
 
 }
